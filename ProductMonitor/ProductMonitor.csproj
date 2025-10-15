@@ -18,4 +18,8 @@
     <Folder Include="Resources\Images\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\Images\Logo.png" />
+    <Resource Include="Resources\Images\Logo.png" />
+  </ItemGroup>
 </Project>
