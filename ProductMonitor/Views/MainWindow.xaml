@@ -35,8 +35,29 @@
                 <Image Grid.Column="0" Source="../Resources/Images/Logo.png" Margin="10 7" />
                 <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
                     <TextBlock Text="{Binding Title}" Foreground="White" FontSize="16" />
-                    <TextBlock Text="{Binding SubTitle}" Foreground="White" FontSize="12" Margin="0, 2, 0, 0"/>
+                    <TextBlock Text="{Binding SubTitle}" Foreground="White" FontSize="12" Margin="0, 2, 0, 0" />
                 </StackPanel>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="15" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="Transparent"
+                                WindowChrome.IsHitTestVisibleInChrome="True">
+                        <Button Content="&#xe650;" Style="{StaticResource OperationButtonStyle}" />
+                        <Button Content="&#xe651;" Style="{StaticResource OperationButtonStyle}" />
+                        <Button Content="&#xe600;" Style="{StaticResource OperationButtonStyle}" Background="DarkRed" />
+                    </StackPanel>
+                    <Border Grid.Row="1" BorderThickness="0 1 0 1" BorderBrush="#5518aabd">
+                        <Border.Background>
+                            <VisualBrush TileMode="FlipXY" Viewport="0 0 7 7" ViewportUnits="Absolute">
+                                <VisualBrush.Visual>
+                                    <Line X1="0" Y1="10" X2="10" Y2="0" Stroke="Gray" StrokeThickness="1" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Border.Background>
+                    </Border>
+                </Grid>
             </Grid>
         </Border>
 
