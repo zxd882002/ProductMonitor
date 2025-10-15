@@ -1,4 +1,6 @@
-﻿using Prism.Mvvm;
+﻿using System;
+using Prism.Commands;
+using Prism.Mvvm;
 
 namespace ProductMonitor.ViewModels
 {
@@ -19,9 +21,12 @@ namespace ProductMonitor.ViewModels
             get => _subTitle;
             set => SetProperty(ref _subTitle, value);
         }
+        
+        public DelegateCommand CloseCommand { get; }
 
         public MainWindowViewModel()
         {
+            CloseCommand = new DelegateCommand(() => Environment.Exit(0));
         }
     }
 }

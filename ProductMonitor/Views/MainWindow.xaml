@@ -46,7 +46,7 @@
                                 WindowChrome.IsHitTestVisibleInChrome="True">
                         <Button Content="&#xe650;" Style="{StaticResource OperationButtonStyle}" />
                         <Button Content="&#xe651;" Style="{StaticResource OperationButtonStyle}" />
-                        <Button Content="&#xe600;" Style="{StaticResource OperationButtonStyle}" Background="DarkRed" />
+                        <Button Content="&#xe600;" Style="{StaticResource OperationButtonStyle}" Background="DarkRed" Command="{Binding CloseCommand}" />
                     </StackPanel>
                     <Border Grid.Row="1" BorderThickness="0 1 0 1" BorderBrush="#5518aabd">
                         <Border.Background>
