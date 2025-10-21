@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProductMonitor.Views
+namespace ProductMonitor.Login
 {
     /// <summary>
     /// LoginUserControl.xaml 的交互逻辑

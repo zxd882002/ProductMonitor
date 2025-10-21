@@ -1,18 +1,16 @@
-﻿using Prism.Services.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Prism.Commands;
+﻿using System;
 
-namespace ProductMonitor.ViewModels
+using Prism.Commands;
+using Prism.Dialogs;
+
+namespace ProductMonitor.Login
 {
     internal class LoginUserControlViewModel : IDialogAware
     {
+        private DialogCloseListener _requestClose;
+        DialogCloseListener IDialogAware.RequestClose => _requestClose;
+        
         public string Title => "Login";
-
-        public event Action<IDialogResult> RequestClose;
 
         public bool CanCloseDialog()
         {
@@ -27,6 +25,7 @@ namespace ProductMonitor.ViewModels
         {
         }
 
+
         public DelegateCommand LoginCommand { get; set; }
 
         public LoginUserControlViewModel()
@@ -36,7 +35,7 @@ namespace ProductMonitor.ViewModels
 
         private void DoLogin()
         {
-            RequestClose?.Invoke(new DialogResult(ButtonResult.OK));
+            _requestClose.Invoke(new DialogResult(ButtonResult.OK));
         }
     }
 }
