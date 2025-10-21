@@ -7,13 +7,88 @@
              mc:Ignorable="d"
              Height="675" Width="1200">
     <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="../ResourceDictionaries/ButtonStyleDictionary.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="150" />
         </Grid.RowDefinitions>
-        
-        <!--Header-->
-        <TextBlock>HELLO</TextBlock>
+
+        <!-- Header: 日期， 计数 -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Date -->
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <TextBlock Text="{Binding Time}" Foreground="White" FontSize="30"
+                           FontFamily="../Resources/Fonts/#DS-Digital" />
+                <StackPanel Orientation="Vertical" Margin="15 0 0 0 ">
+                    <TextBlock Text="{Binding Date}" Foreground="White" FontSize="10" TextAlignment="Right" />
+                    <TextBlock Text="{Binding Week}" Foreground="White" FontSize="10" TextAlignment="Right" />
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Count -->
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <StackPanel.Resources>
+                    <DataTemplate x:Key="DigitCount">
+                        <Border Width="15" Background="#3318aabd" Margin="2 0">
+                            <TextBlock Text="{Binding}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="16"
+                                       Foreground="White" />
+                        </Border>
+                    </DataTemplate>
+                </StackPanel.Resources>
+
+                <TextBlock Text="机台&#13;总数"
+                           Foreground="#99ffffff" FontSize="10" VerticalAlignment="Center" Margin="10 0" />
+                <ItemsControl ItemsSource="{Binding MachineCount}" ItemTemplate="{StaticResource DigitCount}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+                <TextBlock Text="生产计数"
+                           Foreground="#99ffffff" FontSize="10" VerticalAlignment="Center" Margin="20 0 10 0" />
+                <ItemsControl ItemsSource="{Binding ProductCount}" ItemTemplate="{StaticResource DigitCount}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+                <TextBlock Text="不良计数"
+                           Foreground="#99ffffff" FontSize="10" VerticalAlignment="Center" Margin="20 0 10 0" />
+                <ItemsControl ItemsSource="{Binding BadCount}" ItemTemplate="{StaticResource DigitCount}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </StackPanel>
+
+            <!-- Configure Button -->
+            <Button Grid.Column="1" Height="35" Width="80" Margin="20 0"
+                    HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Style="{StaticResource IconButtonStyle}"
+                    Tag="&#xe60c;" Content="配置" />
+        </Grid>
     </Grid>
 </UserControl>
