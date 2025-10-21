@@ -16,7 +16,7 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="{TemplateBinding Tag}"
                                        VerticalAlignment="Center"
-                                       FontFamily="../Resources/Fonts/#iconfont" />
+                                       FontFamily="../Fonts/#iconfont" />
                             <TextBlock Text="{TemplateBinding Content}"
                                        VerticalAlignment="Center"
                                        Margin="5 0 0 0" />
