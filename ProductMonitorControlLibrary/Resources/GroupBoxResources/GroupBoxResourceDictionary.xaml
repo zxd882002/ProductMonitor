@@ -1,0 +1,56 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="GroudBoxStyle" TargetType="GroupBox">
+        <Setter Property="Margin" Value="10 3" />
+        <Setter Property="Foreground" Value="#9918aabd" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupBox">
+
+                    <Grid>
+                        <Polyline Points="0,30 0,10 10,0 30,0"
+                                  Stroke="{TemplateBinding Foreground}"
+                                  VerticalAlignment="Top" HorizontalAlignment="Left" />
+                        <Ellipse Height="4" Width="4" Margin="24, -2, 0, 0"
+                                 Fill="{TemplateBinding Foreground}"
+                                 VerticalAlignment="Top" HorizontalAlignment="Left" />
+                        <Ellipse Height="4" Width="4" Margin="-2, 24, 0, 0"
+                                 Fill="{TemplateBinding Foreground}"
+                                 VerticalAlignment="Top" HorizontalAlignment="Left" />
+                        <Path Data="M 0,0 3,3 30,3 33,0 68,0 73,7 78,7 78,10 M 8,0 25,0"
+                              Stroke="{TemplateBinding Foreground}"
+                              VerticalAlignment="Top" HorizontalAlignment="Right" />
+                        <Polyline Points="0,0 0,15 10,15"
+                                  Stroke="{TemplateBinding Foreground}"
+                                  VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+                        <Polyline Points="10,0 0,10"
+                                  Stroke="{TemplateBinding Foreground}"
+                                  VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+                        <Polygon Points="7,0 0,7 7,7"
+                                 Fill="{TemplateBinding Foreground}"
+                                 VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+                        <Border BorderThickness="0 1 0 0"
+                                BorderBrush="{TemplateBinding Foreground}"
+                                VerticalAlignment="Top" Margin="30 -0.5 78 -0.5" />
+
+                        <Border BorderThickness="0 0 1 0"
+                                BorderBrush="{TemplateBinding Foreground}"
+                                HorizontalAlignment="Right" Margin="0 10" />
+
+                        <Border BorderThickness="0 0 0 1"
+                                BorderBrush="{TemplateBinding Foreground}"
+                                VerticalAlignment="Bottom" Margin="10 0 " />
+
+                        <Border BorderThickness="1 0 0 0"
+                                BorderBrush="{TemplateBinding Foreground}"
+                                HorizontalAlignment="Left" Margin="-0.5 15" />
+                        <Path Data="M 0,0 3,0 5,4 3,8 0,8 3,4" Stroke="{TemplateBinding Foreground}" Margin="10,13" />
+                        <Path Data="M 0,0 3,0 5,4 3,8 0,8 3,4" Stroke="{TemplateBinding Foreground}" Margin="16,13" />
+                        <TextBlock Text="{TemplateBinding Header}" Foreground="White" FontWeight="Bold" Margin="25,8" />
+                        <ContentPresenter Margin="25 25 25 10" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
