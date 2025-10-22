@@ -112,14 +112,16 @@
 
                 <!-- 环境 -->
                 <GroupBox Grid.Row="0" Header="环境" Style="{StaticResource GroudBoxStyle}">
-                   <Grid>
-                       <local:EnvironmentUserControl />
-                   </Grid>
+                    <local:EnvironmentUserControl />
                 </GroupBox>
                 <!-- 产能 -->
-                <GroupBox Grid.Row="1" Header="产能" Style="{StaticResource GroudBoxStyle}"></GroupBox>
+                <GroupBox Grid.Row="1" Header="产能" Style="{StaticResource GroudBoxStyle}">
+                    <local:ProductivityUserControl />
+                </GroupBox>
                 <!-- 质量 -->
-                <GroupBox Grid.Row="2" Header="质量" Style="{StaticResource GroudBoxStyle}"></GroupBox>
+                <GroupBox Grid.Row="2" Header="质量" Style="{StaticResource GroudBoxStyle}">
+                    <local:QualityUserControl />
+                </GroupBox>
             </Grid>
 
             <!-- 列2: 图片，报警，报警比例-->
