@@ -12,6 +12,8 @@
       <Resource Include="Resources\Fonts\DS-Digital.ttf" />
       <None Remove="Resources\Fonts\iconfont.ttf" />
       <Resource Include="Resources\Fonts\iconfont.ttf" />
+      <None Remove="Resources\Images\device.jpeg" />
+      <Resource Include="Resources\Images\device.jpeg" />
     </ItemGroup>
 
     <ItemGroup>
@@ -25,6 +27,10 @@
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Resources\Images\" />
     </ItemGroup>
 
 </Project>

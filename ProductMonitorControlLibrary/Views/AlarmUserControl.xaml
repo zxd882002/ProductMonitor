@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="ProductMonitorControlLibrary.Views.AlarmUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ProductMonitorControlLibrary.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             xmlns:vm="clr-namespace:ProductMonitorControlLibrary.ViewModels"
+             d:DataContext="{d:DesignInstance Type=vm:AlarmUserControlViewModel, IsDesignTimeCreatable=True}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock Text="&#xe600;" FontFamily="../Resources/Fonts/#iconfont" Foreground="#99ffffff" Margin="5 0" />
+            <TextBlock Text="报警记录" Foreground="#99ffffff" />
+        </StackPanel>
+
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding AlarmList}" Margin="5 0">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="23">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Background="IndianRed" Height="6" Width="6" CornerRadius="3"
+                                VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Column="1" Text="{Binding Number}" Foreground="#992bedf1"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Column="2" Text="{Binding Message}" Foreground="#992bedf1"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="3" Text="{Binding AlarmTime}" Foreground="#992bedf1"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="4" Text="{Binding DurationSeconds, StringFormat=时长{0}秒}"
+                                   Foreground="#992bedf1" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</UserControl>

@@ -124,8 +124,24 @@
                 </GroupBox>
             </Grid>
 
-            <!-- 列2: 图片，报警，报警比例-->
-            <Grid Grid.Column="1"></Grid>
+            <!-- 列2: 图片，报警记录，数据异常报警比例-->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1.5*" />
+                </Grid.RowDefinitions>
+                <!-- 图片 -->
+                <local:ImageUserControl Grid.Row="0" />
+
+                <!-- 报警记录 -->
+                <local:AlarmUserControl Grid.Row="1" />
+
+                <!-- 报警比例 -->
+                <GroupBox Grid.Row="2" Header="数据异常报警比例" Style="{StaticResource GroudBoxStyle}" Margin="0 5">
+                    <local:AlarmRatioUserControl />
+                </GroupBox>
+            </Grid>
             <!-- 列3: 设备，能耗，人力 -->
             <Grid Grid.Column="2"></Grid>
         </Grid>
