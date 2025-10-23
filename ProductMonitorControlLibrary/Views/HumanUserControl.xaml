@@ -43,7 +43,6 @@
                                 <TextBlock Text="{Binding OutOfWorkCount}" FontSize="9" Foreground="#99ffffff"
                                            VerticalAlignment="Center" />
                             </StackPanel>
-
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

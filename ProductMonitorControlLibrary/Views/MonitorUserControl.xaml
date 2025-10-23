@@ -167,5 +167,27 @@
 
             </Grid>
         </Grid>
+
+        <!-- Footer: 车间-->
+        <ItemsControl Grid.Row="2" ItemsSource="{Binding WorkShopList}" Margin="10 0">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="1" Columns="{Binding WorkShopList.Count}">
+                    </UniformGrid>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:WorkShopUserControl
+                        WorkShopName="{Binding Name}"
+                        Total="{Binding TotalCount}"
+                        WorkingCount="{Binding WorkingCount}"
+                        WaitingCount="{Binding WaitingCount}"
+                        ErrorCount="{Binding ErrorCount}"
+                        StopCount="{Binding StopCount}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
     </Grid>
 </UserControl>
