@@ -1,4 +1,7 @@
-﻿namespace ProductMonitorControlLibrary.ViewModels;
+using System.Collections.ObjectModel;
+using ProductMonitorControlLibrary.Models;
+
+namespace ProductMonitorControlLibrary.ViewModels;
 
 public class MonitorUserControlViewModel : BindableBase
 {
@@ -52,12 +55,51 @@ public class MonitorUserControlViewModel : BindableBase
         set => _badCount = value;
     }
     
+    private ObservableCollection<ItemNameValueModel> _environmentList;
+    
+    public ObservableCollection<ItemNameValueModel> EnvironmentList
+    {
+        get => _environmentList;
+        set => SetProperty(ref _environmentList, value);
+    }
+    
+    private ObservableCollection<ItemNameValueModel> _deviceList;
+    
+    public ObservableCollection<ItemNameValueModel> DeviceList
+    {
+        get => _deviceList;
+        set => SetProperty(ref _deviceList, value);
+    }
+    
     public MonitorUserControlViewModel()
     {
         _timer = new Timer(OnTimer, null, 0, 1000);
         _machineCount = "0298";
         _productCount = "1643";
         _badCount = "023";
+        
+        _environmentList = new ObservableCollection<ItemNameValueModel>()
+        {
+            new () { ItemName = "光照（lux）", ItemValue = 123 },
+            new () { ItemName = "噪音（dB）", ItemValue = 55 },
+            new () { ItemName = "温度（℃）", ItemValue = 80 },
+            new () { ItemName = "湿度（%）", ItemValue = 43 },
+            new () { ItemName = "PM2.5（μg/m³）", ItemValue = 20 },
+            new () { ItemName = "硫化氢（ppm）", ItemValue = 15 },
+            new () { ItemName = "氮气（ppm）", ItemValue = 18 },
+        };
+        
+        _deviceList = new ObservableCollection<ItemNameValueModel>()
+        {
+            new () { ItemName = "电能（kWh）", ItemValue = 60.8},
+            new () { ItemName = "电压（V）", ItemValue = 390 },
+            new () { ItemName = "电流（A）", ItemValue = 5 },
+            new () { ItemName = "压差（kpa）", ItemValue = 13 },
+            new () { ItemName = "温度（℃）", ItemValue = 36 },
+            new () { ItemName = "振动（mm/s）", ItemValue = 4.1 },
+            new () { ItemName = "转速（r/min）", ItemValue = 2600 },
+            new () { ItemName = "气压（kPa）", ItemValue = 0.5 },
+        };
     }
 
     private void OnTimer(object? state)
