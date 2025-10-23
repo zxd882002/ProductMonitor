@@ -158,11 +158,11 @@
                 </GroupBox>
                 <!-- 能耗 -->
                 <GroupBox Grid.Row="1" Header="能耗" Style="{StaticResource GroudBoxStyle}">
-                    <!-- <local:EnergyUserControl /> -->
+                    <local:RadarUserControl ItemList="{Binding RadarList}" />
                 </GroupBox>
                 <!-- 人力 -->
                 <GroupBox Grid.Row="2" Header="人力" Style="{StaticResource GroudBoxStyle}">
-                    <!-- <local:HumanUserControl /> -->
+                    <local:HumanUserControl />
                 </GroupBox>
 
             </Grid>

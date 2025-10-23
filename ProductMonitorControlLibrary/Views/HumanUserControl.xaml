@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="ProductMonitorControlLibrary.Views.HumanUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ProductMonitorControlLibrary.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             xmlns:vm="clr-namespace:ProductMonitorControlLibrary.ViewModels"
+             d:DataContext="{d:DesignInstance Type=vm:HumanUserControlViewModel, IsDesignTimeCreatable=True}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-20 0 0 0 ">
+            <TextBlock Text="{Binding Total}" HorizontalAlignment="Center" Foreground="#99ffffff" FontSize="25" />
+            <TextBlock Text="在职在岗" HorizontalAlignment="Center" Foreground="#55ffffff" FontSize="12" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="缺岗统计" Height="30" Foreground="#18aabd" Margin="0 -20 0 0" />
+            <ItemsControl ItemsSource="{Binding StaffOutOfWorkList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Width="6" Height="6" CornerRadius="3" Background="Orange" />
+                            <TextBlock Grid.Column="1" Text="{Binding Name}" Foreground="#99ffffff"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock Grid.Column="2" Text="{Binding Position}" Foreground="#99ffffff"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <StackPanel Grid.Column="3" Orientation="Horizontal">
+                                <Border Background="#aa1bedf1" Height="3" Width="{Binding ShowWidth}" Margin="5 0" />
+                                <TextBlock Text="{Binding OutOfWorkCount}" FontSize="9" Foreground="#99ffffff"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Grid>
+</UserControl>

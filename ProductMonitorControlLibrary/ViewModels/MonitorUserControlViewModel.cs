@@ -71,6 +71,13 @@ public class MonitorUserControlViewModel : BindableBase
         set => SetProperty(ref _deviceList, value);
     }
     
+    private ObservableCollection<ItemNameValueModel> _radarList;
+    public ObservableCollection<ItemNameValueModel> RadarList
+    {
+        get => _radarList;
+        set => SetProperty(ref _radarList, value);
+    }
+    
     public MonitorUserControlViewModel()
     {
         _timer = new Timer(OnTimer, null, 0, 1000);
@@ -99,6 +106,15 @@ public class MonitorUserControlViewModel : BindableBase
             new () { ItemName = "振动（mm/s）", ItemValue = 4.1 },
             new () { ItemName = "转速（r/min）", ItemValue = 2600 },
             new () { ItemName = "气压（kPa）", ItemValue = 0.5 },
+        };
+        
+        _radarList = new ObservableCollection<ItemNameValueModel>
+        {
+            new () { ItemName = "排烟风机", ItemValue = 90 },
+            new () { ItemName = "客梯", ItemValue = 30 },
+            new () { ItemName = "供水机", ItemValue = 34.89 },
+            new () { ItemName = "喷淋水泵", ItemValue = 69.59 },
+            new () { ItemName = "稳压设备", ItemValue = 20 },
         };
     }
 
