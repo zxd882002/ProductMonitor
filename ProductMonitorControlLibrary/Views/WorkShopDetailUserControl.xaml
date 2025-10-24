@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="ProductMonitorControlLibrary.Views.WorkShopDetailUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ProductMonitorControlLibrary.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             Height="675" Width="1200"
+             Background="LightGreen"
+             xmlns:vm="clr-namespace:ProductMonitorControlLibrary.ViewModels"
+             d:DataContext="{d:DesignInstance Type=vm:WorkShopDetailUserControlViewModel, IsDesignTimeCreatable=True}">
+    <Grid>
+        <TextBlock Text="{Binding WorkShopName}" />
+    </Grid>
+</UserControl>

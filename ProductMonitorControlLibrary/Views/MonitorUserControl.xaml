@@ -184,7 +184,8 @@
                         WorkingCount="{Binding WorkingCount}"
                         WaitingCount="{Binding WaitingCount}"
                         ErrorCount="{Binding ErrorCount}"
-                        StopCount="{Binding StopCount}" />
+                        StopCount="{Binding StopCount}"
+                        ShowDetailCommand="{Binding Path=DataContext.ShowDetailCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

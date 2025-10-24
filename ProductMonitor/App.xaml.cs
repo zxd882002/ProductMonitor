@@ -7,6 +7,7 @@ using ProductMonitor.Login;
 using ProductMonitorControlLibrary.ViewModels;
 using ProductMonitorControlLibrary.Views;
 using Prism.Navigation.Regions;
+using ProductMonitorControlLibrary.Behaviors;
 
 namespace ProductMonitor
 {
@@ -23,11 +24,20 @@ namespace ProductMonitor
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterDialog<LoginUserControl, LoginUserControlViewModel>();
-            containerRegistry.RegisterForNavigation<MonitorUserControl, MonitorUserControlViewModel>(nameof(MonitorUserControl));
+            containerRegistry.RegisterForNavigation<MonitorUserControl, MonitorUserControlViewModel>(
+                nameof(MonitorUserControl));
+            containerRegistry.RegisterForNavigation<WorkShopDetailUserControl, WorkShopDetailUserControlViewModel>(
+                nameof(WorkShopDetailUserControl));
+        }
+
+        protected override void ConfigureDefaultRegionBehaviors(IRegionBehaviorFactory regionBehaviors)
+        {
+            base.ConfigureDefaultRegionBehaviors(regionBehaviors);
+            regionBehaviors.AddIfMissing(NavigationAnimationBehavior.BehaviorKey, typeof(NavigationAnimationBehavior));
         }
 
         protected override void OnInitialized()
-        {      
+        {
             var dialog = Container.Resolve<IDialogService>();
             dialog.ShowDialog("LoginUserControl", r =>
             {
@@ -36,13 +46,12 @@ namespace ProductMonitor
                     Environment.Exit(0);
                     return;
                 }
-                
+
                 // 登录成功后再导航到MonitorUserControl
                 var regionManager = Container.Resolve<IRegionManager>();
                 regionManager.RequestNavigate("ContentRegion", nameof(MonitorUserControl));
+                base.OnInitialized();
             });
-
-            base.OnInitialized();
         }
     }
 }

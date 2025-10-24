@@ -87,8 +87,14 @@ public class MonitorUserControlViewModel : BindableBase
         set => SetProperty(ref _radarList, value);
     }
 
-    public MonitorUserControlViewModel()
+    private IRegionManager _regionManager { get; }
+    public DelegateCommand<string> ShowDetailCommand { get; }
+    
+    public MonitorUserControlViewModel(IRegionManager regionManager)
     {
+        _regionManager = regionManager;
+        ShowDetailCommand = new DelegateCommand<string>(ShowWorkShopDetail);
+        
         _timer = new Timer(OnTimer, null, 0, 1000);
         _machineCount = "0298";
         _productCount = "1643";
@@ -142,5 +148,12 @@ public class MonitorUserControlViewModel : BindableBase
         Date = now.ToString("yyyy-MM-dd");
         //Week = new[] { "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" }[(int)now.DayOfWeek];
         Week = now.ToString("dddd");
+    }
+    
+    private void ShowWorkShopDetail(string workShopName)
+    {
+        _regionManager.RequestNavigate("ContentRegion",
+            new Uri($"WorkShopDetailUserControl?workShopName={workShopName}&EnableAnimation=True",
+                UriKind.Relative));
     }
 }

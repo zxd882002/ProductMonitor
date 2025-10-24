@@ -1,5 +1,6 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Controls;
+using Prism.Commands;
 
 namespace ProductMonitorControlLibrary.Views;
 
@@ -32,7 +33,6 @@ public partial class WorkShopUserControl : UserControl
     public static readonly DependencyProperty WorkingCountProperty = DependencyProperty.Register(
         nameof(WorkingCount), typeof(int), typeof(WorkShopUserControl), new PropertyMetadata(default(int)));
 
-
     public int ErrorCount
     {
         get => (int)GetValue(ErrorCountProperty);
@@ -59,7 +59,16 @@ public partial class WorkShopUserControl : UserControl
 
     public static readonly DependencyProperty StopCountProperty = DependencyProperty.Register(
         nameof(StopCount), typeof(int), typeof(WorkShopUserControl), new PropertyMetadata(default(int)));
-    
+
+    public DelegateCommand<string> ShowDetailCommand
+    {
+        get => (DelegateCommand<string>)GetValue(ShowDetailCommandProperty);
+        set => SetValue(ShowDetailCommandProperty, value);
+    }
+
+    public static readonly DependencyProperty ShowDetailCommandProperty = DependencyProperty.Register(
+        nameof(ShowDetailCommand), typeof(DelegateCommand<string>), typeof(WorkShopUserControl), new PropertyMetadata(default(DelegateCommand<string>)));
+
     public WorkShopUserControl()
     {
         InitializeComponent();
