@@ -8,10 +8,118 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              Height="675" Width="1200"
-             Background="LightGreen"
              xmlns:vm="clr-namespace:ProductMonitorControlLibrary.ViewModels"
              d:DataContext="{d:DesignInstance Type=vm:WorkShopDetailUserControlViewModel, IsDesignTimeCreatable=True}">
     <Grid>
-        <TextBlock Text="{Binding WorkShopName}" />
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="../Resources/ButtonResources/ButtonStyleDictionary.xaml" />
+                    <ResourceDictionary Source="../Resources/ButtonResources/RadioButtonStyleDictionary.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="#1118aabd" Margin="10 6" />
+        <Border Grid.Row="1" Background="#1118aabd" Margin="10 6" />
+        <Button Grid.Row="0" Content="返回" Height="28" Width="80"
+                HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 0"
+                Style="{StaticResource IconButtonStyle}" Tag="&#xe61f;"
+                Command="{Binding GoBackCommand}" />
+        <TextBlock Grid.Row="0" Text="{Binding WorkShopName}" Foreground="White"
+                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <StackPanel Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Center"
+                    Margin="20 0">
+            <TextBlock Text="机台状态：" Foreground="White" VerticalAlignment="Center" />
+            <RadioButton Content="全部" IsChecked="True" />
+            <RadioButton Content="作业" />
+            <RadioButton Content="等待" />
+            <RadioButton Content="故障" />
+            <RadioButton Content="停机" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" Margin="10, 5" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding MachineList}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="5" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="0 1 0 0" BorderBrush="#9918aabd" Background="#0a18aabd" Margin="10 5"
+                                Height="260">
+                            <Grid TextBlock.FontSize="11">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="22" />
+                                    <RowDefinition Height="22" />
+                                    <RowDefinition Height="22" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           FontSize="12"
+                                           Text="{Binding MachineName}"
+                                           Foreground="#aaffffff"
+                                           Margin="20 0 0 0" />
+
+                                <StackPanel Grid.Row="0"
+                                            VerticalAlignment="Center" HorizontalAlignment="Right"
+                                            Orientation="Horizontal">
+                                    <Border Width="6" Height="6" CornerRadius="3" Margin="0 0 5 0"
+                                            Background="LightGreen" />
+                                    <TextBlock Text="{Binding Status}" Foreground="LightGreen" />
+                                </StackPanel>
+
+
+                                <local:RingUserControl Grid.Row="1" PercentageValue="{Binding CompleteRate}"
+                                                       Margin="30" />
+
+                                <StackPanel Grid.Row="2" Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Margin="15 0">
+                                    <TextBlock Text="任务状态：" Foreground="#55ffffff" VerticalAlignment="Center" />
+                                    <Label Content="{Binding Status}"
+                                           BorderBrush="LightGreen"
+                                           Foreground="LightGreen"
+                                           VerticalAlignment="Center"
+                                           BorderThickness="1"
+                                           Padding="5 1" />
+                                </StackPanel>
+                                <TextBlock Grid.Row="2"
+                                           HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5 0">
+                                    <Hyperlink TextDecorations="None" Foreground="#55ffffff">[详情]</Hyperlink>
+                                </TextBlock>
+
+                                <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center"
+                                            Margin="15 0">
+                                    <TextBlock Text="任务进度：" Foreground="#55ffffff" VerticalAlignment="Center" />
+                                    <TextBlock Foreground="White" VerticalAlignment="Center">
+                                        <Run Text="{Binding CompleteCount}" />
+                                        <Run Text="/" />
+                                        <Run Text="{Binding PlanCount}" />
+                                    </TextBlock>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center"
+                                            Margin="15 0">
+                                    <TextBlock Text="工单编号：" Foreground="#55ffffff" VerticalAlignment="Center" />
+                                    <TextBlock Foreground="White" VerticalAlignment="Center"
+                                               Text="{Binding OrderNumber}" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>

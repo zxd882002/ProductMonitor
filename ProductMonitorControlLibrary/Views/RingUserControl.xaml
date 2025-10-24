@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="ProductMonitorControlLibrary.Views.RingUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ProductMonitorControlLibrary.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid x:Name="RootGrid">
+        <Ellipse Width="{Binding ElementName=RootGrid, Path=ActualWidth }"
+                 Height="{Binding ElementName=RootGrid, Path=ActualHeight }"
+                 Stroke="#22ffffff"
+                 StrokeThickness="10"/>
+        <Path x:Name="FillPath" Stroke="LightSkyBlue" StrokeThickness="10"
+              StrokeStartLineCap="Round" StrokeEndLineCap="Round" />
+
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White">
+            <Run
+                Text="{Binding PercentageValue, RelativeSource={RelativeSource AncestorType=UserControl}, StringFormat={}{0:#}}"
+                FontSize="22" />
+            <Run Text="%" />
+        </TextBlock>
+    </Grid>
+</UserControl>

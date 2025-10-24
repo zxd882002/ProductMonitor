@@ -36,7 +36,7 @@ public class NavigationAnimationBehavior : RegionBehavior
             Storyboard.SetTargetProperty(thicknessAnimation, new PropertyPath(FrameworkElement.MarginProperty));
             storyboard.Children.Add(thicknessAnimation);
 
-            var opacityAnimation = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(4000));
+            var opacityAnimation = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(400));
             Storyboard.SetTarget(opacityAnimation, newView);
             Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath(UIElement.OpacityProperty));
             storyboard.Children.Add(opacityAnimation);

@@ -1,4 +1,7 @@
-﻿namespace ProductMonitorControlLibrary.ViewModels;
+﻿using System.Collections.ObjectModel;
+using ProductMonitorControlLibrary.Models;
+
+namespace ProductMonitorControlLibrary.ViewModels;
 
 public class WorkShopDetailUserControlViewModel : BindableBase, INavigationAware
 {
@@ -12,9 +15,43 @@ public class WorkShopDetailUserControlViewModel : BindableBase, INavigationAware
         set { SetProperty(ref _workShopName, value); }
     }
 
+    private ObservableCollection<MachineModel> _machineList;
+
+    public ObservableCollection<MachineModel> MachineList
+    {
+        get => _machineList;
+        set => SetProperty(ref _machineList, value);
+    }
+
+    public DelegateCommand<string> GoBackCommand { get; }
+
     public WorkShopDetailUserControlViewModel(IRegionManager regionManager)
     {
         _regionManager = regionManager;
+        GoBackCommand = new DelegateCommand<string>(ShowMonitor);
+        MachineList = new ObservableCollection<MachineModel>();
+        Random random = new Random();
+        for (int i = 0; i < 20; i++)
+        {
+            int plan = random.Next(100, 1000);
+            int complete = random.Next(100, plan);
+            int status = random.Next(0, 4);
+            MachineList.Add(new MachineModel
+            {
+                MachineName = $"焊接机-{i + 1}",
+                CompleteCount = complete,
+                PlanCount = plan,
+                Status = status switch
+                {
+                    0 => "作业中",
+                    1 => "等待中",
+                    2 => "故障中",
+                    3 => "停机中",
+                    _ => "未知"
+                },
+                OrderNumber = $"NO-{random.Next(1000, 9999)}"
+            });
+        }
     }
 
     public void OnNavigatedTo(NavigationContext navigationContext)
@@ -33,5 +70,12 @@ public class WorkShopDetailUserControlViewModel : BindableBase, INavigationAware
 
     public void OnNavigatedFrom(NavigationContext navigationContext)
     {
+    }
+
+    private void ShowMonitor(string workShopName)
+    {
+        _regionManager.RequestNavigate("ContentRegion",
+            new Uri($"MonitorUserControl?workShopName={workShopName}",
+                UriKind.Relative));
     }
 }
