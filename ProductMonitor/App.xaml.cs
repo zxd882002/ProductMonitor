@@ -18,12 +18,14 @@ namespace ProductMonitor
     {
         protected override Window CreateShell()
         {
+            //return new SettingsWindow();
             return Container.Resolve<MainWindow>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterDialog<LoginUserControl, LoginUserControlViewModel>();
+            containerRegistry.RegisterDialog<SettingsWindow, SettingsWindowViewModel>(nameof(SettingsWindow));
             containerRegistry.RegisterForNavigation<MonitorUserControl, MonitorUserControlViewModel>(
                 nameof(MonitorUserControl));
             containerRegistry.RegisterForNavigation<WorkShopDetailUserControl, WorkShopDetailUserControlViewModel>(
@@ -39,6 +41,7 @@ namespace ProductMonitor
         protected override void OnInitialized()
         {
             var dialog = Container.Resolve<IDialogService>();
+
             dialog.ShowDialog("LoginUserControl", r =>
             {
                 if (r.Result != ButtonResult.OK)

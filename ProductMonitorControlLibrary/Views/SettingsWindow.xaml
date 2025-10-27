@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="ProductMonitorControlLibrary.Views.SettingsWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ProductMonitorControlLibrary.Views"
+             xmlns:viewModels="clr-namespace:ProductMonitorControlLibrary.ViewModels"
+             mc:Ignorable="d"
+             Height="450" Width="800"
+             Background="Transparent" FontFamily="Microsoft YaHei"
+             FontWeight="ExtraLight"
+             d:DataContext="{d:DesignInstance Type=viewModels:SettingsWindowViewModel, IsDesignTimeCreatable=True}">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="RadioButton">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RadioButton">
+                            <Border Background="{TemplateBinding Background}" Height="30">
+                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter Property="Background" Value="#1890FF" />
+                        <Setter Property="Foreground" Value="White" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="系统配置信息" FontSize="14" VerticalAlignment="Center" Margin="10 0" />
+        <Border Grid.Row="1" Grid.Column="0" BorderThickness="0 0 1 0" BorderBrush="#ddd" />
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="10 0">
+            <RadioButton Content="设备清单" IsChecked="True" Command="{Binding OnSelectedCommand}" CommandParameter="s0" />
+            <RadioButton Content="环境监测" Command="{Binding OnSelectedCommand}" CommandParameter="s1" />
+            <RadioButton Content="设备监测" Command="{Binding OnSelectedCommand}" CommandParameter="s2" />
+            <RadioButton Content="配置一" Command="{Binding OnSelectedCommand}" CommandParameter="s3" />
+            <RadioButton Content="配置二" Command="{Binding OnSelectedCommand}" CommandParameter="s4" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Hidden">
+            <Frame x:Name="SettingsFrame" Source="SettingsPage.xaml" NavigationUIVisibility="Hidden" />
+        </ScrollViewer>
+    </Grid>
+</UserControl>

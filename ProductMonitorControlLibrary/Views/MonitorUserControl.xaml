@@ -93,7 +93,7 @@
             <Button Grid.Column="1" Height="35" Width="80" Margin="20 0"
                     HorizontalAlignment="Right" VerticalAlignment="Center"
                     Style="{StaticResource IconButtonStyle}"
-                    Tag="&#xe60c;" Content="配置" />
+                    Tag="&#xe60c;" Content="配置" Command="{Binding ShowSettingsCommand}" />
         </Grid>
 
         <!-- 主体 3列-->

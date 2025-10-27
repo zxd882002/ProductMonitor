@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using ProductMonitorControlLibrary.Models;
+using ProductMonitorControlLibrary.Views;
 
 namespace ProductMonitorControlLibrary.ViewModels;
 
@@ -88,13 +89,18 @@ public class MonitorUserControlViewModel : BindableBase
     }
 
     private IRegionManager _regionManager { get; }
+    private IDialogService _dialogService { get; }
+
     public DelegateCommand<string> ShowDetailCommand { get; }
-    
-    public MonitorUserControlViewModel(IRegionManager regionManager)
+    public DelegateCommand ShowSettingsCommand { get; }
+
+    public MonitorUserControlViewModel(IRegionManager regionManager, IDialogService dialogService)
     {
         _regionManager = regionManager;
+        _dialogService = dialogService;
         ShowDetailCommand = new DelegateCommand<string>(ShowWorkShopDetail);
-        
+        ShowSettingsCommand = new DelegateCommand(ShowWorkShopSettings);
+
         _timer = new Timer(OnTimer, null, 0, 1000);
         _machineCount = "0298";
         _productCount = "1643";
@@ -135,8 +141,8 @@ public class MonitorUserControlViewModel : BindableBase
         _workShopList = new List<WorkShopModel>()
         {
             new() { Name = "贴片车间1", WorkingCount = 32, WaitingCount = 8, ErrorCount = 4, StopCount = 0 },
-            new() { Name = "封装车间",  WorkingCount = 20, WaitingCount = 8, ErrorCount = 4, StopCount = 0 },
-            new() { Name = "焊接车间",  WorkingCount = 32, WaitingCount = 10, ErrorCount = 4, StopCount = 10 },
+            new() { Name = "封装车间", WorkingCount = 20, WaitingCount = 8, ErrorCount = 4, StopCount = 0 },
+            new() { Name = "焊接车间", WorkingCount = 32, WaitingCount = 10, ErrorCount = 4, StopCount = 10 },
             new() { Name = "贴片车间2", WorkingCount = 68, WaitingCount = 8, ErrorCount = 4, StopCount = 0 },
         };
     }
@@ -149,11 +155,16 @@ public class MonitorUserControlViewModel : BindableBase
         //Week = new[] { "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" }[(int)now.DayOfWeek];
         Week = now.ToString("dddd");
     }
-    
+
     private void ShowWorkShopDetail(string workShopName)
     {
         _regionManager.RequestNavigate("ContentRegion",
             new Uri($"WorkShopDetailUserControl?workShopName={workShopName}&EnableAnimation=True",
                 UriKind.Relative));
+    }
+
+    private void ShowWorkShopSettings()
+    {
+        _dialogService.ShowDialog(nameof(SettingsWindow));
     }
 }
