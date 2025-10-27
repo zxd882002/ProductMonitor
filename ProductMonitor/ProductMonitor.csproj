@@ -9,7 +9,6 @@
     <Content Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Resources\Fonts\" />
     <Folder Include="Resources\Images\" />
   </ItemGroup>
@@ -18,8 +17,11 @@
     <Resource Include="Resources\Images\Logo.png" />
     <None Remove="Resources\Fonts\iconfont.ttf" />
     <Resource Include="Resources\Fonts\iconfont.ttf" />
+    <None Remove="Resources\Images\Login.jpg" />
+    <Resource Include="Resources\Images\Login.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="5.3.0" />
     <PackageReference Include="Prism.DryIoc" Version="9.0.537" />
   </ItemGroup>
   <ItemGroup>
