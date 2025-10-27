@@ -21,6 +21,14 @@ namespace ProductMonitor.Login
             set => SetProperty(ref _selectedIndex, value);
         }
 
+        private string  _password;
+
+        public string  Password
+        {
+            get => _password;
+            set => _password = value;
+        }
+
         public bool CanCloseDialog()
         {
             return true;
@@ -72,6 +80,7 @@ namespace ProductMonitor.Login
 
         private void DoLogin()
         {
+            var pwd = Password;
             _requestClose.Invoke(new DialogResult(ButtonResult.OK));
         }
     }
