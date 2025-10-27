@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows;
 using ProductMonitorControlLibrary.Models;
 
 namespace ProductMonitorControlLibrary.ViewModels;
@@ -23,12 +24,35 @@ public class WorkShopDetailUserControlViewModel : BindableBase, INavigationAware
         set => SetProperty(ref _machineList, value);
     }
 
+    private Visibility _detailBorderVisibility;
+
+    public Visibility DetailBorderVisibility
+    {
+        get => _detailBorderVisibility;
+        set => SetProperty(ref _detailBorderVisibility, value);
+    }
+
+    private bool _isDetailVisible;
+
+    public bool IsDetailVisible
+    {
+        get => _isDetailVisible;
+        set => SetProperty(ref _isDetailVisible, value);
+    }
+
     public DelegateCommand<string> GoBackCommand { get; }
+    public DelegateCommand ShowDetailCommand { get; }
+    public DelegateCommand HideDetailCommand { get; }
+    public DelegateCommand OnAnimationCompletedCommand { get; }
 
     public WorkShopDetailUserControlViewModel(IRegionManager regionManager)
     {
         _regionManager = regionManager;
+        _detailBorderVisibility = Visibility.Collapsed;
         GoBackCommand = new DelegateCommand<string>(ShowMonitor);
+        ShowDetailCommand = new DelegateCommand(ShowDetail);
+        HideDetailCommand = new DelegateCommand(HideDetail);
+        OnAnimationCompletedCommand = new DelegateCommand(HideDetailCompleted);
         MachineList = new ObservableCollection<MachineModel>();
         Random random = new Random();
         for (int i = 0; i < 20; i++)
@@ -77,5 +101,21 @@ public class WorkShopDetailUserControlViewModel : BindableBase, INavigationAware
         _regionManager.RequestNavigate("ContentRegion",
             new Uri($"MonitorUserControl?workShopName={workShopName}",
                 UriKind.Relative));
+    }
+
+    private void ShowDetail()
+    {
+        DetailBorderVisibility = Visibility.Visible;
+        IsDetailVisible = true;
+    }
+
+    private void HideDetail()
+    {
+        IsDetailVisible = false;
+    }
+
+    private void HideDetailCompleted()
+    {
+        DetailBorderVisibility = Visibility.Collapsed;
     }
 }
