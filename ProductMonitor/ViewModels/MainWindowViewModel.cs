@@ -35,17 +35,41 @@ namespace ProductMonitor.ViewModels
         }
 
         public AsyncDelegateCommand CloseCommand { get; }
+        public DelegateCommand MinimizeCommand { get; }
+        public DelegateCommand MaximizeCommand { get; }
 
         public MainWindowViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
             CloseCommand = new AsyncDelegateCommand(ExecuteAsync);
+            MinimizeCommand = new DelegateCommand(MinimizeWindow);
+            MaximizeCommand = new DelegateCommand(MaximizeOrRestoreWindow);
+        }
+
+        // 最大化或还原窗口方法
+        private void MaximizeOrRestoreWindow()
+        {
+            var window = System.Windows.Application.Current.MainWindow;
+            if (window.WindowState == System.Windows.WindowState.Maximized)
+            {
+                window.WindowState = System.Windows.WindowState.Normal;
+            }
+            else
+            {
+                window.WindowState = System.Windows.WindowState.Maximized;
+            }
+        }
+
+        // 最小化窗口方法
+        private void MinimizeWindow()
+        {
+            System.Windows.Application.Current.MainWindow.WindowState = System.Windows.WindowState.Minimized;
         }
 
         // 异步执行方法（返回Task）
         private async Task ExecuteAsync()
         {
-            await Task.Delay(1000);
+            System.Windows.Application.Current.MainWindow.Close();
             Environment.Exit(0);
         }
     }

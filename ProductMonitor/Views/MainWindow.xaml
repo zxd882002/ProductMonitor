@@ -45,8 +45,8 @@
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="Transparent"
                                 WindowChrome.IsHitTestVisibleInChrome="True">
-                        <Button Content="&#xe650;" Style="{StaticResource OperationButtonStyle}" />
-                        <Button Content="&#xe651;" Style="{StaticResource OperationButtonStyle}" />
+                        <Button Content="&#xe650;" Style="{StaticResource OperationButtonStyle}" Command="{Binding MinimizeCommand}" />
+                        <Button Content="&#xe651;" Style="{StaticResource OperationButtonStyle}" Command="{Binding MaximizeCommand}" />
                         <Button Content="&#xe600;" Style="{StaticResource OperationButtonStyle}" Background="DarkRed"
                                 Command="{Binding CloseCommand}" />
                     </StackPanel>
