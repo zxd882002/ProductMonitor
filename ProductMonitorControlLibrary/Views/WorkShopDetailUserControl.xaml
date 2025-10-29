@@ -12,6 +12,7 @@
              mc:Ignorable="d"
              Height="675" Width="1200"
              xmlns:vm="clr-namespace:ProductMonitorControlLibrary.ViewModels"
+             xmlns:converters="clr-namespace:ProductMonitorControlLibrary.Resources.Converters"
              d:DataContext="{d:DesignInstance Type=vm:WorkShopDetailUserControlViewModel, IsDesignTimeCreatable=True}">
     <Grid>
         <Grid.Resources>
@@ -56,6 +57,9 @@
                     <DataTemplate>
                         <Border BorderThickness="0 1 0 0" BorderBrush="#9918aabd" Background="#0a18aabd" Margin="10 5"
                                 Height="260">
+                            <Border.Resources>
+                                <converters:StatusToColorConverter x:Key="StatusToColorConverter" />
+                            </Border.Resources>
                             <Grid TextBlock.FontSize="11">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="30" />
@@ -77,8 +81,9 @@
                                             VerticalAlignment="Center" HorizontalAlignment="Right"
                                             Orientation="Horizontal">
                                     <Border Width="6" Height="6" CornerRadius="3" Margin="0 0 5 0"
-                                            Background="LightGreen" />
-                                    <TextBlock Text="{Binding Status}" Foreground="LightGreen" />
+                                            Background="{Binding Status, Converter={StaticResource StatusToColorConverter}}" />
+                                    <TextBlock Text="{Binding Status}"
+                                               Foreground="{Binding Status, Converter={StaticResource StatusToColorConverter}}" />
                                 </StackPanel>
 
 
@@ -91,8 +96,8 @@
                                             Margin="15 0">
                                     <TextBlock Text="任务状态：" Foreground="#55ffffff" VerticalAlignment="Center" />
                                     <Label Content="{Binding Status}"
-                                           BorderBrush="LightGreen"
-                                           Foreground="LightGreen"
+                                           BorderBrush="{Binding Status, Converter={StaticResource StatusToColorConverter}}"
+                                           Foreground="{Binding Status, Converter={StaticResource StatusToColorConverter}}"
                                            VerticalAlignment="Center"
                                            BorderThickness="1"
                                            Padding="5 1" />
@@ -133,7 +138,7 @@
             <Border Background="#f5f7f9fa" VerticalAlignment="Bottom" BorderBrush="#aa3bedf1" BorderThickness="0 1 0 0">
                 <i:Interaction.Behaviors>
                     <behaviors:BorderAnimationBehavior IsVisible="{Binding IsDetailVisible}"
-                                                       OnAnimationCompletedCommand="{Binding OnAnimationCompletedCommand}"/>
+                                                       OnAnimationCompletedCommand="{Binding OnAnimationCompletedCommand}" />
                 </i:Interaction.Behaviors>
                 <Grid Height="350">
                     <Grid.RowDefinitions>
